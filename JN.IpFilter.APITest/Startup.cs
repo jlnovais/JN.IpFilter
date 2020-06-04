@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JN.IpFilter.APITest.HelperClasses;
+using JN.IpFilter.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,12 +31,20 @@ namespace JN.IpFilter.APITest
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // virtual is used to override in tests
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+
+            var filters = Configuration.GetIpFilters("IpFilters");
+            var logRequests = Configuration.GetIpFiltersLogRequests("IpFiltersLogRequests");
+
+            app.UseIpFilter(filters, logRequests);
+
 
             app.UseHttpsRedirection();
 

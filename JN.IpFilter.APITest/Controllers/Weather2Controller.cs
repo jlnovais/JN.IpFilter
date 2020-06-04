@@ -9,16 +9,16 @@ namespace JN.IpFilter.APITest.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class Weather2Controller : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<Weather2Controller> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public Weather2Controller(ILogger<Weather2Controller> logger)
         {
             _logger = logger;
         }
