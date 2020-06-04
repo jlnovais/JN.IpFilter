@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jlnovais/JN.IpFilter.svg?branch=master)](https://travis-ci.org/jlnovais/JN.IpFilter)
+
 # JN.IpFilter
 IP Filter for ASP.NET Core.
 
