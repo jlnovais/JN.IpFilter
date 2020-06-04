@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace JN.IpFilter.Tests.Integration.HelperClasses
@@ -17,26 +18,34 @@ namespace JN.IpFilter.Tests.Integration.HelperClasses
     /// </summary>
     public class FakeRemoteIpAddressMiddleware
     {
-        private readonly RequestDelegate next;
-        private readonly IPAddress fakeIpAddress = IPAddress.Parse("1.1.1.1");
+        private readonly RequestDelegate _next;
+        private readonly IPAddress _fakeIpAddress = IPAddress.Parse("1.1.1.1");
 
         public FakeRemoteIpAddressMiddleware(RequestDelegate next)
         {
-            this.next = next;
+            _next = next;
         }
 
         public async Task Invoke(HttpContext httpContext)
         {
-            httpContext.Connection.RemoteIpAddress = fakeIpAddress;
+            httpContext.Connection.RemoteIpAddress = _fakeIpAddress;
 
-            await this.next(httpContext);
+            await _next(httpContext);
         }
     }
 
-    public class StartupStub : Startup
+    public class FakeStartup : Startup
     {
-        public StartupStub(IConfiguration configuration) : base(configuration)
+        public FakeStartup(IConfiguration configuration) : base(configuration)
         {
+        }
+
+        public override void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc()
+                .AddApplicationPart(typeof(Startup).Assembly);
+
+            base.ConfigureServices(services);
         }
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
