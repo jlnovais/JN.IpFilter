@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace JN.IpFilter.Tests
 {
-    public class IpFilterToolsTests
+    public class ListContainsIpTests
     {
         [SetUp]
         public void Setup()

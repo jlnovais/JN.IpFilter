@@ -17,10 +17,31 @@ namespace JN.IpFilter.Tests.Integration
     public class RequestTests
     {
 
+        /* API Config:
+
+  "IpFilters": [
+    {
+      "Path": "/Weather",
+      "IpList": "1.1.1.1;::1"
+    },
+    {
+      "Path": "/Weather2",
+      "IpList": "*"
+    },
+    {
+      "Path": "/Weather3",
+      "IpList": "2.2.2.2"
+    }
+  ],
+        */
+
         private string accessAllowedByIP_Path = "/Weather";
         private string accessAllowedAllIPs_Path = "/Weather2";
         private string accessNotAllowedPath = "/Weather3";
-        private string accessAllowed_IP_Not_Listed_Path = "/Weather4";
+        private string accessAllowedPathNotInRules = "/Weather4";
+
+        private string accessAllowedPathNotExistsOnAPI = "/nonExisting";
+        private string accessAllowedPathNotPatchingAnyRule = "/Other";
 
         private TestServer _apiServer;
 
@@ -63,12 +84,32 @@ namespace JN.IpFilter.Tests.Integration
         }
 
         [Test]
-        public async Task Request_accessAllowed_IP_not_Listed_returnsUnauthorized()
+        public async Task Request_accessAllowedPathNotInRules_returnsOk()
         {
-            var response = await _apiServer.CreateRequest(accessAllowed_IP_Not_Listed_Path)
+            var response = await _apiServer.CreateRequest(accessAllowedPathNotInRules)
                 .GetAsync();
 
             Assert.That(response.StatusCode == HttpStatusCode.OK);
         }
+
+        [Test]
+        public async Task Request_accessAllowed_PathNotExisting_returnsNotFound()
+        {
+            var response = await _apiServer.CreateRequest(accessAllowedPathNotExistsOnAPI)
+                .GetAsync();
+
+            Assert.That(response.StatusCode == HttpStatusCode.NotFound);
+        }
+
+        [Test]
+        public async Task Request_accessAllowed_PathExistingButNotMatchingAnyRule_returnsOk()
+        {
+            var response = await _apiServer.CreateRequest(accessAllowedPathNotPatchingAnyRule)
+                .GetAsync();
+
+            Assert.That(response.StatusCode == HttpStatusCode.OK);
+        }
+
+        //
     }
 }

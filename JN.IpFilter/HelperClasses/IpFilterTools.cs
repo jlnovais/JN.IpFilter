@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
-using System.Text;
-
 
 [assembly: InternalsVisibleTo("JN.IpFilter.Tests")]
 namespace JN.IpFilter.HelperClasses
 {
     internal class IpFilterTools
     {
-        public static (bool pathExist, bool ipExists) ValidateIpAndPath(IPAddress remoteIp, string path,
-            List<Middleware.IpFilter> ipFilters)
+        public static (bool pathExist, bool ipExists) ValidatePathAndIp(IPAddress remoteIp, string path,
+            List<IpFilter> ipFilters, bool exactPathMatch)
         {
             var filtersWithPath = ipFilters.Where(x => path.Equals(x.Path, StringComparison.InvariantCultureIgnoreCase))
                 .ToList();
 
-            if (!filtersWithPath.Any())
+            if (!exactPathMatch && !filtersWithPath.Any())
                 filtersWithPath = ipFilters
                     .Where(x => path.StartsWith(x.Path, StringComparison.InvariantCultureIgnoreCase)).ToList();
 

@@ -1,4 +1,4 @@
-﻿namespace JN.IpFilter.Middleware
+﻿namespace JN.IpFilter
 {
     public class IpFilter
     {

@@ -52,7 +52,7 @@ namespace JN.IpFilter.Middleware
                 if (_logRequests)
                     _logger.LogInformation($"Request from Remote IP address: {remoteIp} to '{path}'");
 
-                var resultValidation = IpFilterTools.ValidateIpAndPath(remoteIp, path, _ipLists.ToList());
+                var resultValidation = IpFilterTools.ValidatePathAndIp(remoteIp, path, _ipLists.ToList(), false);
 
                 var badIp = resultValidation.pathExist && !resultValidation.ipExists;
 

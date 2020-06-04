@@ -8,9 +8,9 @@ namespace JN.IpFilter.APITest.HelperClasses
 {
     public static class SettingsHelper
     {
-        public static List<Middleware.IpFilter> GetIpFilters(this IConfiguration configuration, string sectionName)
+        public static List<IpFilter> GetIpFilters(this IConfiguration configuration, string sectionName)
         {
-            var config = new List<Middleware.IpFilter>();
+            var config = new List<IpFilter>();
 
             configuration.Bind(sectionName, config);
 
