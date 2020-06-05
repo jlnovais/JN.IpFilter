@@ -5,6 +5,8 @@ Simple IP Filter for ASP.NET Core.
 
 Provides an IP Filter for paths exposed by the application using a white list of valid IP addresses for each path.
 
+More details available on the [project website](https://jn-ipfilter.josenovais.com/)
+
 ## Install
 Download the package from NuGet:
 

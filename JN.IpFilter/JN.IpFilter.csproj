@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>José Novais</Authors>
+    <PackageProjectUrl>https://jn-ipfilter.josenovais.com/</PackageProjectUrl>
+    <PackageIcon>jn-ipfilter.png</PackageIcon>
+    <Description>Simple IP Filter for ASP.NET Core.
+
+Provides an IP Filter for paths exposed by the application using a white list of valid IP addresses for each path.</Description>
+    <RepositoryUrl>https://github.com/jlnovais/JN.IpFilter</RepositoryUrl>
+    <PackageReleaseNotes>First version</PackageReleaseNotes>
+    <PackageTags>IP filter ASP.NET Core csharp API</PackageTags>
+    <Copyright>José Novais, 2020</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +22,13 @@
 
   <ItemGroup>
     <Folder Include="Entities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="jn-ipfilter.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

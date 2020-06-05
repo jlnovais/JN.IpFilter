@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>JN.IpFilter</id>
+    <version>1.0.0</version>
+    <authors>José Novais</authors>
+    <owners>José Novais</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>	
+    <icon>jn-ipfilter.png</icon>
+    <projectUrl>https://jn-ipfilter.josenovais.com/</projectUrl>
+    <title>JN.IpFilter</title>	
+    <description>Simple IP Filter for ASP.NET Core.
+
+Provides an IP Filter for paths exposed by the application using a white list of valid IP addresses for each path.</description>
+    <summary>Simple IP Filter for ASP.NET Core.</summary>
+    <releaseNotes>First version</releaseNotes>
+    <copyright>José Novais, 2020</copyright>
+    <tags>IP;filter;ASP.NET;Core;csharp;API;whitelist</tags>
+    <repository url="https://github.com/jlnovais/JN.IpFilter" />
+    <dependencies>
+      <group targetFramework=".NETCoreApp2.1">
+        <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="2.2.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="3.1.4" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
