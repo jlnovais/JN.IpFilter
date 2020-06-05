@@ -14,13 +14,13 @@ using Microsoft.Extensions.Hosting;
 namespace JN.IpFilter.Tests.Integration.HelperClasses
 {
     /// <summary>
+    /// based on:
     /// https://stackoverflow.com/questions/49244283/set-dummy-ip-address-in-integration-test-with-asp-net-core-testserver
     /// </summary>
     public class FakeRemoteIpAddressMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IPAddress _fakeIpAddress = IPAddress.Parse("1.1.1.1");
-
+        private string _fakeIp = "1.1.1.1";
         public FakeRemoteIpAddressMiddleware(RequestDelegate next)
         {
             _next = next;
@@ -28,7 +28,12 @@ namespace JN.IpFilter.Tests.Integration.HelperClasses
 
         public async Task Invoke(HttpContext httpContext)
         {
-            httpContext.Connection.RemoteIpAddress = _fakeIpAddress;
+            if (httpContext.Request.Headers.ContainsKey(Constants.HeaderFakeIpName))
+                _fakeIp = httpContext.Request.Headers[Constants.HeaderFakeIpName];
+
+            IPAddress fakeIpAddress = IPAddress.Parse(_fakeIp);
+
+            httpContext.Connection.RemoteIpAddress = fakeIpAddress;
 
             await _next(httpContext);
         }
@@ -38,6 +43,7 @@ namespace JN.IpFilter.Tests.Integration.HelperClasses
     {
         public FakeStartup(IConfiguration configuration) : base(configuration)
         {
+            var configuration2 = configuration;
         }
 
         public override void ConfigureServices(IServiceCollection services)

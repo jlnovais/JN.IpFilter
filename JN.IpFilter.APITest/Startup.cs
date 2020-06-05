@@ -41,9 +41,9 @@ namespace JN.IpFilter.APITest
 
 
             var filters = Configuration.GetIpFilters("IpFilters");
-            var logRequests = Configuration.GetIpFiltersLogRequests("IpFiltersLogRequests");
+            var options = Configuration.GetIpFilterOptions("IpFilterMiddlewareOptions");
 
-            app.UseIpFilter(filters, logRequests);
+            app.UseIpFilter(filters, options);
 
 
             app.UseHttpsRedirection();

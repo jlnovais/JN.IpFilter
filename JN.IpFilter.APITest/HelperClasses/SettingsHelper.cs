@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JN.IpFilter.Middleware;
 using Microsoft.Extensions.Configuration;
 
 namespace JN.IpFilter.APITest.HelperClasses
@@ -15,16 +16,17 @@ namespace JN.IpFilter.APITest.HelperClasses
             configuration.Bind(sectionName, config);
 
             return config;
-
         }
 
-        public static bool GetIpFiltersLogRequests(this IConfiguration configuration, string sectionName)
+        public static IpFilterMiddlewareOptions GetIpFilterOptions(this IConfiguration configuration, string sectionName)
         {
-            bool logRequests = configuration.GetValue<bool>(sectionName);
+            var config = new IpFilterMiddlewareOptions();
 
+            configuration.Bind(sectionName, config);
 
-            return logRequests;
+            return config;
 
         }
+
     }
 }

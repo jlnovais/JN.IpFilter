@@ -10,36 +10,43 @@ using Microsoft.Extensions.Logging;
 
 namespace JN.IpFilter.Middleware
 {
+    public class IpFilterMiddlewareOptions
+    {
+        public bool ExactPathMatch { get; set; }
+        public bool LogRequests { get; set; }
+        public string ApplyOnlyToHttpMethod { get; set; }
+    }
+
+
     public class IpFilterMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<IpFilterMiddleware> _logger;
         private readonly IEnumerable<IpFilter> _ipLists;
-        private readonly string _applyOnlyToHttpMethod;
-        private readonly bool _logRequests;
+        private readonly IpFilterMiddlewareOptions _options;
+        //private readonly string _applyOnlyToHttpMethod;
+        //private readonly bool _logRequests;
 
         public IpFilterMiddleware(
             RequestDelegate next,
             ILogger<IpFilterMiddleware> logger,
             IEnumerable<IpFilter> ipLists,
-            bool logRequests,
-            string applyOnlyToHttpMethod
+            IpFilterMiddlewareOptions options
         )
         {
             _ipLists = ipLists;
-            _applyOnlyToHttpMethod = applyOnlyToHttpMethod;
-            _logRequests = logRequests;
+            _options = options;
             _logger = logger;
 
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             var applyFilter = true;
-            if (!string.IsNullOrWhiteSpace(_applyOnlyToHttpMethod))
+            if (!string.IsNullOrWhiteSpace(_options.ApplyOnlyToHttpMethod))
                 if (context != null)
-                    applyFilter = context.Request.Method == _applyOnlyToHttpMethod;
+                    applyFilter = context.Request.Method == _options.ApplyOnlyToHttpMethod;
 
             applyFilter = applyFilter && _ipLists != null;
 
@@ -49,16 +56,16 @@ namespace JN.IpFilter.Middleware
                 var remoteIp = context.Connection.RemoteIpAddress;
                 var path = context.Request.Path.Value;
 
-                if (_logRequests)
+                if (_options.LogRequests)
                     _logger.LogInformation($"Request from Remote IP address: {remoteIp} to '{path}'");
 
-                var resultValidation = IpFilterTools.ValidatePathAndIp(remoteIp, path, _ipLists.ToList(), false);
+                var resultValidation = IpFilterTools.ValidatePathAndIp(remoteIp, path, _ipLists.ToList(), _options.ExactPathMatch);
 
                 var badIp = resultValidation.pathExist && !resultValidation.ipExists;
 
                 if (badIp)
                 {
-                    if (_logRequests)
+                    if (_options.LogRequests)
                         _logger.LogInformation($"Forbidden request from Remote IP address: {remoteIp} to '{path}'");
                     context.Response.StatusCode = (int) HttpStatusCode.Unauthorized; //401
                     return;
