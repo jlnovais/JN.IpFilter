@@ -31,6 +31,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
     //(...)
 }
+```
 
 `filters` and ` options` can be read from configuration:
 
