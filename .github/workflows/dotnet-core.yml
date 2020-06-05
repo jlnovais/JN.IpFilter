@@ -22,6 +22,6 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal JN.IPFilter.Tests/JN.IPFilter.Tests.csproj
+      run: dotnet test --verbosity normal JN.IPFilter.Tests/JN.IPFilter.Tests.csproj
     - name: Test2
-      run: dotnet test --no-restore --verbosity normal JN.IpFilter.Tests.Integration/JN.IpFilter.Tests.Integration.csproj
+      run: dotnet test --verbosity normal JN.IpFilter.Tests.Integration/JN.IpFilter.Tests.Integration.csproj
