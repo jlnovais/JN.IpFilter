@@ -11,14 +11,14 @@ namespace JN.IpFilter.Tests.Integration
 {
     public class RequestTests_ExactPathMatch_False
     {
-        private string accessAllowedByIP_Path = "/Weather";
-        private string accessAllowedAllIPs_Path = "/Weather2";
-        private string accessNotAllowedPath = "/Weather3";
-        private string pathNotInRulesStartingLikeOther = "/Weather4";
-        private string pathNotInRules_Not_StartingLikeOther = "/SomeOther";
+        private const string accessAllowedByIP_Path = "/Weather";
+        private const string accessAllowedAllIPs_Path = "/Weather2";
+        private const string accessNotAllowedPath = "/Weather3";
+        private const string pathNotInRulesStartingLikeOther = "/Weather4";
+        private const string pathNotInRules_Not_StartingLikeOther = "/SomeOther";
 
-        private string accessAllowedPathNotExistsOnAPI = "/nonExisting";
-        private string accessAllowedPathNotPatchingAnyRule = "/Other";
+        private const string accessAllowedPathNotExistsOnAPI = "/nonExisting";
+        private const string accessAllowedPathNotPatchingAnyRule = "/Other";
 
         private TestServer _apiServer;
 

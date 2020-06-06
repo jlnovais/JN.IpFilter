@@ -16,7 +16,7 @@ namespace JN.IpFilter.Tests.Integration
 {
     public class RequestTests_ExactPathMatch_True
     {
-        private string pathNotInRulesStartingLikeOther = "/Weather4";
+        private const string pathNotInRulesStartingLikeOther = "/Weather4";
 
         private TestServer _apiServer;
 

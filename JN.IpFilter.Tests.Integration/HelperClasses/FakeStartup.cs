@@ -20,7 +20,7 @@ namespace JN.IpFilter.Tests.Integration.HelperClasses
     public class FakeRemoteIpAddressMiddleware
     {
         private readonly RequestDelegate _next;
-        private string _fakeIp = "1.1.1.1";
+        private const string _fakeIp = "1.1.1.1";
         public FakeRemoteIpAddressMiddleware(RequestDelegate next)
         {
             _next = next;

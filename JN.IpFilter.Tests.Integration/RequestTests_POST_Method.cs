@@ -14,11 +14,8 @@ namespace JN.IpFilter.Tests.Integration
     public class RequestTests_POST_Method
     {
 
-        private string path = "/Methods";
-
-
+        private const string path = "/Methods";
         private TestServer _apiServer;
-
 
         [SetUp]
         public void Setup()
