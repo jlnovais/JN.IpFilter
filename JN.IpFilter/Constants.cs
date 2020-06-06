@@ -2,7 +2,7 @@
 
 namespace JN.IpFilter
 {
-    public class Constants
+    public static class Constants
     {
         public static string AnyIp => "*";
     }
