@@ -43,7 +43,6 @@ namespace JN.IpFilter.Tests.Integration.HelperClasses
     {
         public FakeStartup(IConfiguration configuration) : base(configuration)
         {
-            var configuration2 = configuration;
         }
 
         public override void ConfigureServices(IServiceCollection services)

@@ -16,31 +16,9 @@ namespace JN.IpFilter.Tests.Integration
 {
     public class RequestTests_ExactPathMatch_True
     {
-
-        /* API Config:
-
-  "IpFilters": [
-    {
-      "Path": "/Weather",
-      "IpList": "1.1.1.1;::1"
-    },
-    {
-      "Path": "/Weather2",
-      "IpList": "*"
-    },
-    {
-      "Path": "/Weather3",
-      "IpList": "2.2.2.2"
-    }
-  ],
-        */
-
-
         private string pathNotInRulesStartingLikeOther = "/Weather4";
 
-
         private TestServer _apiServer;
-
 
         [SetUp]
         public void Setup()
@@ -56,9 +34,6 @@ namespace JN.IpFilter.Tests.Integration
             );
         }
 
-
-
-
         /// <summary>
         /// path is /weather4 but is NOT following rule for /weather because ExactPathMatch = True
         /// </summary>
@@ -72,9 +47,5 @@ namespace JN.IpFilter.Tests.Integration
 
             Assert.That(response.StatusCode == HttpStatusCode.OK);
         }
-
-
-
-        //
     }
 }

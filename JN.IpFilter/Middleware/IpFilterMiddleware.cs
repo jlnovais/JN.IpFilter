@@ -24,8 +24,6 @@ namespace JN.IpFilter.Middleware
         private readonly ILogger<IpFilterMiddleware> _logger;
         private readonly IEnumerable<IpFilter> _ipLists;
         private readonly IpFilterMiddlewareOptions _options;
-        //private readonly string _applyOnlyToHttpMethod;
-        //private readonly bool _logRequests;
 
         public IpFilterMiddleware(
             RequestDelegate next,
