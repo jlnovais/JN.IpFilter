@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JN.IpFilter.APITest.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,29 +12,21 @@ namespace JN.IpFilter.APITest.Controllers
     [Route("[controller]")]
     public class Weather4Controller : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<Weather4Controller> _logger;
+        private readonly IWeatherService _service;
 
-        public Weather4Controller(ILogger<Weather4Controller> logger)
+        public Weather4Controller(ILogger<Weather4Controller> logger, IWeatherService service)
         {
             _logger = logger;
+            _service = service;
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            _logger.LogInformation("request received for Weather 4 API");
+
+            return _service.GetWeather();
         }
     }
 }

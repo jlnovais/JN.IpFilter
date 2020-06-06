@@ -11,19 +11,24 @@ namespace JN.IpFilter.APITest.Controllers
     [Route("[controller]")]
     public class MethodsController : ControllerBase
     {
+        private readonly ILogger<MethodsController> _logger;
+
         public MethodsController(ILogger<MethodsController> logger)
         {
+            _logger = logger;
         }
 
         [HttpGet]
         public string Get()
         {
+            _logger.LogInformation("received Get request");
             return "Get Method";
         }
 
         [HttpPost]
         public string Post([FromBody] string content)
         {
+            _logger.LogInformation("received Post request");
             return "Content received:" + content;
         }
 

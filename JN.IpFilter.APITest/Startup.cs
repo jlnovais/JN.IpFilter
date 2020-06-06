@@ -1,4 +1,5 @@
 using JN.IpFilter.APITest.HelperClasses;
+using JN.IpFilter.APITest.Services;
 using JN.IpFilter.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +22,8 @@ namespace JN.IpFilter.APITest
         public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<IWeatherService, WeatherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
