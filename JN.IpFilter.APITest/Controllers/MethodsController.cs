@@ -11,12 +11,8 @@ namespace JN.IpFilter.APITest.Controllers
     [Route("[controller]")]
     public class MethodsController : ControllerBase
     {
-
-        private readonly ILogger<MethodsController> _logger;
-
         public MethodsController(ILogger<MethodsController> logger)
         {
-            _logger = logger;
         }
 
         [HttpGet]

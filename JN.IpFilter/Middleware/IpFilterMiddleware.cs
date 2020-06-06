@@ -51,8 +51,8 @@ namespace JN.IpFilter.Middleware
 
             if (applyFilter)
             {
-                var remoteIp = context.Connection.RemoteIpAddress;
-                var path = context.Request.Path.Value;
+                var remoteIp = context?.Connection.RemoteIpAddress;
+                var path = context?.Request.Path.Value;
 
                 if (_options.LogRequests)
                     _logger.LogInformation($"Request from Remote IP address: {remoteIp} to '{path}'");
