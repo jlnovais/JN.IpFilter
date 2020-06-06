@@ -5,11 +5,7 @@ namespace JN.IpFilter.Tests
 {
     public class ListContainsIpTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
+ 
         [Test]
         public void ListContainsIp_validIpSingle_returnsTrue()
         {

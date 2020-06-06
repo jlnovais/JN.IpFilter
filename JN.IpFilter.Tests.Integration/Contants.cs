@@ -4,8 +4,8 @@ using System.Text;
 
 namespace JN.IpFilter.Tests.Integration
 {
-    public static class Constants
+    public class Constants
     {
-        public const string HeaderFakeIpName = "TestIP";
+        public static string HeaderFakeIpName => "TestIP";
     }
 }

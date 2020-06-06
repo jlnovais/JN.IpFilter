@@ -4,6 +4,6 @@ namespace JN.IpFilter
 {
     public class Constants
     {
-        public const string AnyIp = "*";
+        public static string AnyIp => "*";
     }
 }
