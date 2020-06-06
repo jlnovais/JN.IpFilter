@@ -18,7 +18,7 @@
       }
     },
     "JN.IpFilter.APITest": {
-      "commandName": "Project",
+      "commandName": "Executable",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
       "environmentVariables": {

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using JN.IpFilter.HelperClasses;
 using Microsoft.AspNetCore.Http;
@@ -42,17 +40,17 @@ namespace JN.IpFilter.Middleware
         public async Task InvokeAsync(HttpContext context)
         {
             var applyFilter = true;
+
             if (!string.IsNullOrWhiteSpace(_options.ApplyOnlyToHttpMethod))
                 if (context != null)
                     applyFilter = context.Request.Method == _options.ApplyOnlyToHttpMethod;
 
             applyFilter = applyFilter && _ipLists != null;
 
-
-            if (applyFilter)
+            if (applyFilter && context != null)
             {
-                var remoteIp = context?.Connection.RemoteIpAddress;
-                var path = context?.Request.Path.Value;
+                var remoteIp = context.Connection.RemoteIpAddress;
+                var path = context.Request.Path.Value;
 
                 if (_options.LogRequests)
                     _logger.LogInformation($"Request from Remote IP address: {remoteIp} to '{path}'");
