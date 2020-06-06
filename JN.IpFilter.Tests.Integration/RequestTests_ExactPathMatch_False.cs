@@ -1,13 +1,8 @@
-using System;
-using System.IO;
 using System.Net;
-using System.Reflection;
 using System.Threading.Tasks;
-using JN.IpFilter.APITest;
 using JN.IpFilter.Tests.Integration.HelperClasses;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
