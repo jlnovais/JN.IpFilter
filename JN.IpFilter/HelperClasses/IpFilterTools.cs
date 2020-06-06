@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("JN.IpFilter.Tests")]
 namespace JN.IpFilter.HelperClasses
 {
-    internal class IpFilterTools
+    internal static class IpFilterTools
     {
         public static (bool pathExist, bool ipExists) ValidatePathAndIp(IPAddress remoteIp, string path,
             List<IpFilter> ipFilters, bool exactPathMatch)

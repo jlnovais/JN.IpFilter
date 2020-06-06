@@ -27,12 +27,6 @@ namespace JN.IpFilter.Tests
             }
         };
 
-
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [TestCase("/Path2", "1.1.1.1")]
         [TestCase("/Path2", "0.0.0.0")]
         [TestCase("/Path2", "::1")]
