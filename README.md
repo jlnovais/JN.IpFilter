@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b930f5f068e046e39713f5fe1ea87d4a)](https://app.codacy.com/manual/jlnovais/JN.IpFilter?utm_source=github.com&utm_medium=referral&utm_content=jlnovais/JN.IpFilter&utm_campaign=Badge_Grade_Dashboard)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/jlnovais/JN.IpFilter.svg?branch=master)](https://travis-ci.org/jlnovais/JN.IpFilter)  ![.NET Core](https://github.com/jlnovais/JN.IpFilter/workflows/.NET%20Core/badge.svg)
 
 # JN.IpFilter
