@@ -3,7 +3,7 @@
 # JN.IpFilter
 Simple IP Filter for ASP.NET Core.
 
-Provides an IP Filter for paths exposed by the application using a white list of valid IP addresses for each path.
+Provides an IP Filter for paths exposed by the application using list of valid (allowed) IP addresses for each path.
 
 If access is not allowed, an HTTP Unauthorized (401) status code is returned.
 

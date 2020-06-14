@@ -6,6 +6,18 @@
 -->
 <html>
 	<head>
+	
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169329540-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169329540-1');
+</script>
+	
+	
 		<title>JN.IpFilter - IP Address Filter for ASP.NET Core</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -60,9 +72,9 @@
 								<h1>JN.IpFilter</h1>
 								<p>Simple IP Filter for ASP.NET Core.</p>
 							</header>
-							<p><a target="_blank" href="https://www.nuget.org/packages/JN.IpFilter/"><image src="assets-jn/images/jn-ipfilter.png" style="width: 50px; float: left; margin-right: 10px "></a>
+							<p><a target="_blank" href="https://www.nuget.org/packages/JN.IpFilter/"><image src="assets-jn/images/jn-ipfilter.png" style="width: 50px; float: left; margin-right: 10px "/></a>
 							
-This is as simple IP Filter for ASP.NET Core. Provides an IP Filter for paths exposed by the application using a white list of valid IP addresses for each path. It is possible to allow access to one or more IP addresses per path and apply the filter to a specific HTTP method (POST, GET,...). If access is not allowed, an HTTP Unauthorized (401) status code is returned.
+This is as simple IP Filter for ASP.NET Core. Provides an IP Filter for paths exposed by the application using a list of valid (allowed) IP addresses for each path. It is possible to allow access to one or more IP addresses per path and apply the filter to a specific HTTP method (POST, GET,...). If access is not allowed, an HTTP Unauthorized (401) status code is returned.
 
 </p>			
 
@@ -84,7 +96,7 @@ Some new features will be added to future releases.
 <h3 style="font-style: italic;"><i>Planned features</i></h3>
 
 <ul>
-<li>Deny access based on a blacklist of IPs</li>
+<li>Deny access based on list of invalid (not allowed) IP addresses</li>
 </ul>
 
 </p>
