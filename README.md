@@ -45,7 +45,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   "IpFilterMiddlewareOptions": {
     "ExactPathMatch": false,
     "LogRequests": true,
-    "ApplyOnlyToHttpMethod": "" 
+    "ApplyOnlyToHttpMethod": "", 
     "ResponseHttpStatusCode": 401
   },
 

@@ -16,9 +16,11 @@
 
       Provides an IP Filter for paths exposed by the application using a list of valid (allowed) IP addresses for each path.</description>
     <summary>Simple IP Filter for ASP.NET Core.</summary>
-    <releaseNotes>First version</releaseNotes>
+    <releaseNotes>
+	- Changed default return HTTP status code to Forbidden (403)
+	- Added override option to return HTTP status code</releaseNotes>
     <copyright>José Novais, 2020</copyright>
-    <tags>IP;filter;ASP.NET;Core;csharp;API;allow;valid</tags>
+    <tags>IP;filter;ASP.NET;Core;csharp;API;allow;valid;address</tags>
     <repository url="https://github.com/jlnovais/JN.IpFilter" />
     <dependencies>
       <group targetFramework=".NETCoreApp2.1">
