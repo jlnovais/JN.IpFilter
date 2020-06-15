@@ -5,7 +5,7 @@ Simple IP Filter for ASP.NET Core.
 
 Provides an IP Filter for paths exposed by the application using list of valid (allowed) IP addresses for each path.
 
-If access is not allowed, an HTTP Unauthorized (401) status code is returned.
+If access is not allowed, an HTTP Forbidden (403) status code is returned, but this can be overridden (in options object - `ResponseHttpStatusCode` field).
 
 More details available on the [project website](https://jn-ipfilter.josenovais.com/)
 
@@ -46,6 +46,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     "ExactPathMatch": false,
     "LogRequests": true,
     "ApplyOnlyToHttpMethod": "" 
+    "ResponseHttpStatusCode": 401
   },
 
   "IpFilters": [

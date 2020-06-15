@@ -22,6 +22,8 @@ namespace JN.IpFilter.Tests.Integration
 
         private TestServer _apiServer;
 
+        private readonly HttpStatusCode _defaultHttpStatusCode = JN.IpFilter.Constants.DefaultHttpStatusCode;
+
 
         [SetUp]
         public void Setup()
@@ -47,12 +49,12 @@ namespace JN.IpFilter.Tests.Integration
         }
 
         [Test]
-        public async Task Request_AccessAllowedByIP_OtherIp_returnsUnauthorized()
+        public async Task Request_AccessAllowedByIP_OtherIp_returnsDefaultCode()
         {
             var response = await _apiServer.CreateRequest(accessAllowedByIP_Path)
                 .AddHeader(Constants.HeaderFakeIpName, "1.2.4.6")
                 .GetAsync();
-            Assert.That(response.StatusCode == HttpStatusCode.Unauthorized);
+            Assert.That(response.StatusCode == _defaultHttpStatusCode);
         }
 
 
@@ -66,12 +68,12 @@ namespace JN.IpFilter.Tests.Integration
         }
 
         [Test]
-        public async Task Request_accessNotAllowed_returnsUnauthorized()
+        public async Task Request_accessNotAllowed_returnsDefaultCode()
         {
             var response = await _apiServer.CreateRequest(accessNotAllowedPath)
                 .GetAsync();
 
-            Assert.That(response.StatusCode == HttpStatusCode.Unauthorized);
+            Assert.That(response.StatusCode == _defaultHttpStatusCode);
         }
 
         /// <summary>
@@ -93,13 +95,13 @@ namespace JN.IpFilter.Tests.Integration
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task Request_accessAllowed_pathNotInRulesStartingLikeOther_UserOtherRule_FromOtherIP_returnsUnauthorized()
+        public async Task Request_accessAllowed_pathNotInRulesStartingLikeOther_UserOtherRule_FromOtherIP_returnsDefaultCode()
         {
             var response = await _apiServer.CreateRequest(pathNotInRulesStartingLikeOther)
                 .AddHeader(Constants.HeaderFakeIpName, "1.2.3.4")
                 .GetAsync();
 
-            Assert.That(response.StatusCode == HttpStatusCode.Unauthorized);
+            Assert.That(response.StatusCode == _defaultHttpStatusCode);
         }
 
 

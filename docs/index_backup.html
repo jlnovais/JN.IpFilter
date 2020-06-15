@@ -74,18 +74,19 @@
 							</header>
 							<p><a target="_blank" href="https://www.nuget.org/packages/JN.IpFilter/"><image src="assets-jn/images/jn-ipfilter.png" style="width: 50px; float: left; margin-right: 10px "/></a>
 							
-This is as simple IP Filter for ASP.NET Core. Provides an IP Filter for paths exposed by the application using a list of valid (allowed) IP addresses for each path. It is possible to allow access to one or more IP addresses per path and apply the filter to a specific HTTP method (POST, GET,...). If access is not allowed, an HTTP Unauthorized (401) status code is returned.
+This is as simple IP Filter for ASP.NET Core. Provides an IP Filter for paths exposed by the application using a list of valid (allowed) IP addresses for each path. It is possible to allow access to one or more IP addresses per path and apply the filter to a specific HTTP method (POST, GET,...). If access is not allowed, an HTTP Forbidden (403) status code is returned, but this value can be overridden (see example below).
 
 </p>			
 
 <h2>Current version</h2>
 <p>
-Current version is 1.0.0
+Current version is 1.0.1
 
 <h3 style="font-style: italic;"><i>Release notes for current version</i></h3>
 
 <ul>
-<li>First version</li>
+<li>Changed default return HTTP status code to Forbidden (403) </li>
+<li>Added override option to return HTTP status code</li>
 </ul>
 </p>
 
@@ -142,16 +143,19 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 <h2>Options</h2>
 <p>
-The <code class="jn-noBorder">filters</code> and <code class="jn-noBorder">options</code> can be read from configuration. The appsettings.json file could be something like this:
+The <code class="jn-noBorder">filters</code> and <code class="jn-noBorder">options</code> can be read from configuration. The appsettings.json file could be something like the following.
 </p>
-
+<p>
+The default HTTP status code is Forbidden (403). It can be overridden in the options object by specifiying a new code in <code class="jn-noBorder">ResponseHttpStatusCode</code> field. 
+</p>
 
 <pre>
 <code class="json jn-codeLines">{
   "IpFilterMiddlewareOptions": {
     "ExactPathMatch": false,
     "LogRequests": true,
-    "ApplyOnlyToHttpMethod": "" 
+    "ApplyOnlyToHttpMethod": "",
+    "ResponseHttpStatusCode": 401
   },
   "IpFilters": [
     {
@@ -176,6 +180,9 @@ The available options are as follows:
 </li>
 <li><strong>LogRequests</strong> - log requests using the ILogger provided</li>
 <li><strong>ApplyOnlyToHttpMethod</strong> - apply filter to a specific Http method (POST, GET, ...)</li>
+<li><strong>ResponseHttpStatusCode</strong> - HTTP status code to return - optional; if not specified that HTTP Forbidden (403) will be used.</li>
+
+
 </ul>
 </p>
 						

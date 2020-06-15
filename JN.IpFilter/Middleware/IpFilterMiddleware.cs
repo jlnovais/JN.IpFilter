@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -8,14 +9,6 @@ using Microsoft.Extensions.Logging;
 
 namespace JN.IpFilter.Middleware
 {
-    public class IpFilterMiddlewareOptions
-    {
-        public bool ExactPathMatch { get; set; }
-        public bool LogRequests { get; set; }
-        public string ApplyOnlyToHttpMethod { get; set; }
-    }
-
-
     public class IpFilterMiddleware
     {
         private readonly RequestDelegate _next;
@@ -37,6 +30,15 @@ namespace JN.IpFilter.Middleware
             _next = next;
         }
 
+
+        private int GetStatusCodeToReturn()
+        {
+            if (_options.ResponseHttpStatusCode.IsValidHttpStatusCode())
+                return _options.ResponseHttpStatusCode;
+
+            return (int) Constants.DefaultHttpStatusCode;
+        }
+
         public async Task InvokeAsync(HttpContext context)
         {
             var applyFilter = true;
@@ -53,7 +55,7 @@ namespace JN.IpFilter.Middleware
                 var path = context.Request.Path.Value;
 
                 if (_options.LogRequests)
-                    _logger.LogInformation($"Request from Remote IP address: {remoteIp} to '{path}'");
+                    _logger?.LogInformation($"Request from Remote IP address: {remoteIp} to '{path}'");
 
                 var resultValidation = IpFilterTools.ValidatePathAndIp(remoteIp, path, _ipLists.ToList(), _options.ExactPathMatch);
 
@@ -62,8 +64,8 @@ namespace JN.IpFilter.Middleware
                 if (badIp)
                 {
                     if (_options.LogRequests)
-                        _logger.LogInformation($"Forbidden request from Remote IP address: {remoteIp} to '{path}'");
-                    context.Response.StatusCode = (int) HttpStatusCode.Unauthorized; //401
+                        _logger?.LogInformation($"Forbidden request from Remote IP address: {remoteIp} to '{path}'");
+                    context.Response.StatusCode = GetStatusCodeToReturn();  // default is Forbidden
                     return;
                 }
             }

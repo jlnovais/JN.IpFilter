@@ -8,11 +8,12 @@
     <PackageIcon>jn-ipfilter.png</PackageIcon>
     <Description>Simple IP Filter for ASP.NET Core.
 
-Provides an IP Filter for paths exposed by the application using a white list of valid IP addresses for each path.</Description>
+Provides an IP Filter for paths exposed by the application using a list of valid (allowed) IP addresses for each path.</Description>
     <RepositoryUrl>https://github.com/jlnovais/JN.IpFilter</RepositoryUrl>
     <PackageReleaseNotes>First version</PackageReleaseNotes>
     <PackageTags>IP filter ASP.NET Core csharp API</PackageTags>
     <Copyright>José Novais, 2020</Copyright>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

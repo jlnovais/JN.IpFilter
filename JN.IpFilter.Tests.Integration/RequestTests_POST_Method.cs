@@ -17,6 +17,8 @@ namespace JN.IpFilter.Tests.Integration
         private const string path = "/Methods";
         private TestServer _apiServer;
 
+        private readonly HttpStatusCode _defaultHttpStatusCode = JN.IpFilter.Constants.DefaultHttpStatusCode;
+
         [SetUp]
         public void Setup()
         {
@@ -64,7 +66,7 @@ namespace JN.IpFilter.Tests.Integration
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task Request_PostMethod_IpNotInRule_returnsUnauthorized()
+        public async Task Request_PostMethod_IpNotInRule_returnsDefaultCode()
         {
             var content = GetContent();
 
@@ -74,7 +76,7 @@ namespace JN.IpFilter.Tests.Integration
                 .AddHeader(Constants.HeaderFakeIpName, "1.2.3.4")
                 .PostAsync();
 
-            Assert.That(response.StatusCode == HttpStatusCode.Unauthorized);
+            Assert.That(response.StatusCode == _defaultHttpStatusCode);
         }
 
         [Test]

@@ -9,6 +9,11 @@ namespace JN.IpFilter.HelperClasses
 {
     internal static class IpFilterTools
     {
+        public static bool IsValidHttpStatusCode(this int code)
+        {
+            return Enum.IsDefined(typeof(HttpStatusCode), code);
+        }
+
         public static (bool pathExist, bool ipExists) ValidatePathAndIp(IPAddress remoteIp, string path,
             List<IpFilter> ipFilters, bool exactPathMatch)
         {

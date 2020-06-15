@@ -8,11 +8,17 @@
 
   <ItemGroup>
     <None Remove="appsettings_ExactPathMatch_False.json" />
+    <None Remove="appsettings_ExactPathMatch_False_otherReturnCode.json" />
     <None Remove="appsettings_ExactPathMatch_True.json" />
     <None Remove="appsettings_POST_method.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="appsettings_ExactPathMatch_False_otherReturnCode.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="appsettings_POST_method.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
