@@ -11,10 +11,9 @@
     <icon>jn-ipfilter.png</icon>
     <projectUrl>https://jn-ipfilter.josenovais.com/</projectUrl>
     <title>JN.IpFilter</title>	
-    <description>
-      Simple IP Filter for ASP.NET Core.
+    <description>Simple IP Filter for ASP.NET Core.
 
-      Provides an IP Filter for paths exposed by the application using a list of valid (allowed) IP addresses for each path.</description>
+Provides an IP Filter for paths exposed by the application using a list of valid (allowed) IP addresses for each path.</description>
     <summary>Simple IP Filter for ASP.NET Core.</summary>
     <releaseNotes>
 	- Changed default return HTTP status code to Forbidden (403)
