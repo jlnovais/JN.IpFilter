@@ -53,9 +53,10 @@ namespace JN.IpFilter.Middleware
             {
                 var remoteIp = context.Connection.RemoteIpAddress;
                 var path = context.Request.Path.Value;
+                var port = context.Connection.LocalPort;
 
                 if (_options.LogRequests)
-                    _logger?.LogInformation($"Request from Remote IP address: {remoteIp} to '{path}'");
+                    _logger?.LogInformation($"Request from Remote IP address: {remoteIp} to '{path}' in local port {port}");
 
                 var resultValidation = IpFilterTools.ValidatePathAndIp(remoteIp, path, _ipLists.ToList(), _options.ExactPathMatch);
 
