@@ -3,9 +3,9 @@
 # JN.IpFilter
 Simple IP Filter for ASP.NET Core.
 
-Provides an IP Filter for paths exposed by the application using list of valid (allowed) IP addresses for each path.
+Provides an IP Filter for paths exposed by the application using list of valid (allowed) IP addresses for each path. 
 
-If access is not allowed, an HTTP Forbidden (403) status code is returned, but this can be overridden (in options object - `ResponseHttpStatusCode` field).
+If access is not allowed, an HTTP Forbidden (403) status code is returned, but this can be overridden (in options object - `ResponseHttpStatusCode` field). 
 
 More details available on the [project website](https://jn-ipfilter.josenovais.com/)
 
@@ -20,6 +20,11 @@ Use the `UseIpFilter` extension method to add the middleware inside the `Configu
 
 The `UseIpFilter` extension method needs a list of filters and an options object that can be read from configuration.
 
+*Important:* 
+
+- The `$remoteIp$` tag can be used in `ResponseContent` field to show the remote IP that is executing the request;
+- The value `*` means that any IP address is allowed.
+
 ## Example
 
 ```csharp
@@ -33,7 +38,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
     app.UseIpFilter(filters, options);
 
-    //(...)
+    // (...)
 }
 ```
 
@@ -46,7 +51,9 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     "ExactPathMatch": false,
     "LogRequests": true,
     "ApplyOnlyToHttpMethod": "", 
-    "ResponseHttpStatusCode": 401
+    "ResponseHttpStatusCode": 401,
+    "ResponseContentType": "application/json",
+    "ResponseContent": "{\"ip:\": \"$remoteIp$\", \"Description\": \"Error!!\" }"
   },
 
   "IpFilters": [

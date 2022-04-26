@@ -13,16 +13,18 @@ Provides an IP Filter for paths exposed by the application using a list of valid
     <PackageReleaseNotes>First version</PackageReleaseNotes>
     <PackageTags>IP filter ASP.NET Core csharp API</PackageTags>
     <Copyright>José Novais, 2022</Copyright>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\**" />
+    <EmbeddedResource Remove="Entities\**" />
+    <None Remove="Entities\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Entities\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,6 +11,9 @@ namespace JN.IpFilter.Middleware
 {
     public class IpFilterMiddleware
     {
+
+        private const string IpTag = "$remoteIp$";
+
         private readonly RequestDelegate _next;
         private readonly ILogger<IpFilterMiddleware> _logger;
         private readonly IEnumerable<IpFilter> _ipLists;
@@ -67,11 +70,24 @@ namespace JN.IpFilter.Middleware
                     if (_options.LogRequests)
                         _logger?.LogInformation($"Forbidden request from Remote IP address: {remoteIp} to '{path}'");
                     context.Response.StatusCode = GetStatusCodeToReturn();  // default is Forbidden
+
+                    await WriteContent(context.Response, remoteIp.ToString());
+
                     return;
                 }
             }
 
             await _next.Invoke(context);
+        }
+
+
+        private async Task WriteContent(HttpResponse response, string remoteIp)
+        {
+            if (!string.IsNullOrWhiteSpace(_options.ResponseContentType))
+                response.ContentType = _options.ResponseContentType;
+
+            if (!string.IsNullOrWhiteSpace(_options.ResponseContent))
+                await response.WriteAsync(_options.ResponseContent.Replace(IpTag, remoteIp));
         }
 
 

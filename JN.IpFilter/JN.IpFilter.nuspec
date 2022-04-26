@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>JN.IpFilter</id>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <authors>José Novais</authors>
     <owners>José Novais</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -16,8 +16,11 @@
 Provides an IP Filter for paths exposed by the application using a list of valid (allowed) IP addresses for each path.</description>
     <summary>Simple IP Filter for ASP.NET Core.</summary>
     <releaseNotes>
+		Release Notes for current version (1.2.0):
 
-		Release Notes for current version (1.1.0):
+		- Added content to response; options object now has two new fields for specifying the content and the content type for the response.
+
+		Release Notes for version 1.1.0:
 
 		- Update target framework to netstandard2.0
 
